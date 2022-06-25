@@ -18,8 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   member.init({
-    id_member:{
-      type:DataTypes.CHAR,
+    id_member: {
+      type:DataTypes.INTEGER,
       allowNull:false,
       primaryKey:true,
     },

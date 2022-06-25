@@ -35,6 +35,7 @@ module.exports={
             id_kelas : req.body.id_kelas,
             alamat : req.body.alamat,
             no_tlp : req.body.no_tlp,
+            id_spp : req.body.id_spp
         }
         member.create(data)
         .then(result => {
@@ -55,7 +56,7 @@ module.exports={
             id_member : req.body.id_member,
             id_kelas : req.body.id_kelas,
             alamat : req.body.alamat,
-            no_tlp : req.body.no_tlp,
+            no_tlp : req.body.no_tlp
         }
         member.update(data , {where: param})
         .then(result => {
