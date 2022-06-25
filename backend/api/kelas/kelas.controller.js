@@ -31,8 +31,8 @@ module.exports={
     },
     controllerAdd:(req,res)=>{
         const data = {
-            nama_kelas : req.body.nama_kelas,
-            materi : req.body.materi
+            tingkat_kelas : req.body.tingkat_kelas,
+            jurusan : req.body.jurusan
         }
         kelas.create(data)
         .then(result => {
@@ -51,8 +51,8 @@ module.exports={
         const param = { id_kelas: req.body.id_kelas}
         const data = {
             id_kelas: req.body.id_kelas,
-            nama_kelas : req.body.nama_kelas,
-            materi : req.body.materi
+            tingkat_kelas : req.body.tingkat_kelas,
+            jurusan : req.body.jurusan
         }
         kelas.update(data , {where: param})
         .then(result => {
