@@ -1,12 +1,13 @@
 const models = require("../../models/index");
-const member = models.member;
+const mata_pelajaran = models.mata_pelajaran;
 const md5 = require('md5');
 const jwt = require('jsonwebtoken');
+const mata_pelajaran = require("../../models/mata_pelajaran");
 
 
 module.exports={
     controllerGetAll:(req,res)=>{
-        member.findAll()
+        mata_pelajaran.findAll()
         .then(result=>{
             res.json({
                 sucess:1,
@@ -15,8 +16,8 @@ module.exports={
         })
     },
     controllerGetId:(req,res)=>{
-        const param = { id_member: req.params.id_member}
-        member.findOne({where:param})
+        const param = { id_mata_pelajaran: req.params.id_mata_pelajaran}
+        mata_pelajaran.findOne({where:param})
         .then(result => {
             res.json({
                 success : 1,
@@ -31,12 +32,9 @@ module.exports={
     },
     controllerAdd:(req,res)=>{
         const data = {
-            id_kelas : req.body.id_kelas,
-            alamat : req.body.alamat,
-            no_tlp : req.body.no_tlp,
-            id_spp : req.body.id_spp
+            nama : req.body.nama
         }
-        member.create(data)
+        mata_pelajaran.create(data)
         .then(result => {
             res.json({
                 success : 1,
@@ -50,14 +48,12 @@ module.exports={
         })
     },
     controllerEdit:(req,res)=>{
-        const param = { id_member: req.body.id_member}
+        const param = { id_mata_pelajaran: req.body.id_mata_pelajaran}
         const data = {
-            id_member : req.body.id_member,
-            id_kelas : req.body.id_kelas,
-            alamat : req.body.alamat,
-            no_tlp : req.body.no_tlp
+            id_mata_pelajaran: req.body.id_mata_pelajaran,
+            nama : req.body.nama
         }
-        member.update(data , {where: param})
+        mata_pelajaran.update(data , {where: param})
         .then(result => {
             res.json({
                 success : 1,
@@ -71,8 +67,8 @@ module.exports={
         })
     },
     controllerDelete: (req,res)=>{
-        const param = { id_member: req.body.id_member}
-        member.destroy({where: param})
+        const param = { id_mata_pelajaran: req.body.id_mata_pelajaran}
+        mata_pelajaran.destroy({where: param})
         .then(result => {
             res.json({
                 success : 1,

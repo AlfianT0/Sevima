@@ -1,7 +1,8 @@
 const models = require("../../models/index");
-const member = models.member;
+const guru = models.guru;
 const md5 = require('md5');
 const jwt = require('jsonwebtoken');
+const guru = require("../../models/guru");
 
 
 module.exports={
@@ -15,8 +16,8 @@ module.exports={
         })
     },
     controllerGetId:(req,res)=>{
-        const param = { id_member: req.params.id_member}
-        member.findOne({where:param})
+        const param = { id_guru: req.params.id_guru}
+        guru.findOne({where:param})
         .then(result => {
             res.json({
                 success : 1,
@@ -31,12 +32,12 @@ module.exports={
     },
     controllerAdd:(req,res)=>{
         const data = {
+            nama : req.body.nama,
             id_kelas : req.body.id_kelas,
-            alamat : req.body.alamat,
-            no_tlp : req.body.no_tlp,
-            id_spp : req.body.id_spp
+            id_mata_pelajaran : req.body.id_mata_pelajaran,
+            no_tlp : req.body.no_tlp
         }
-        member.create(data)
+        guru.create(data)
         .then(result => {
             res.json({
                 success : 1,
@@ -50,14 +51,15 @@ module.exports={
         })
     },
     controllerEdit:(req,res)=>{
-        const param = { id_member: req.body.id_member}
+        const param = { id_guru: req.body.id_guru}
         const data = {
-            id_member : req.body.id_member,
+            id_guru : req.body.id_guru,
+            nama : req.body.nama,
             id_kelas : req.body.id_kelas,
-            alamat : req.body.alamat,
+            id_mata_pelajaran : req.body.id_mata_pelajaran,
             no_tlp : req.body.no_tlp
         }
-        member.update(data , {where: param})
+        guru.update(data , {where: param})
         .then(result => {
             res.json({
                 success : 1,
@@ -71,8 +73,8 @@ module.exports={
         })
     },
     controllerDelete: (req,res)=>{
-        const param = { id_member: req.body.id_member}
-        member.destroy({where: param})
+        const param = { id_guru: req.body.id_guru}
+        guru.destroy({where: param})
         .then(result => {
             res.json({
                 success : 1,
